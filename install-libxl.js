@@ -24,7 +24,6 @@
  */
 
 var fs = require('fs'),
-    os = require('os'),
     path = require('path'),
     tmp = require('tmp'),
     util = require('util'),
@@ -34,27 +33,14 @@ var fs = require('fs'),
     http = require('http'),
     AdmZip = require('adm-zip');
 
-var isWin = !!os.platform().match(/^win/),
-    isMac = !!os.platform().match(/^darwin/),
-    dependencyDir = 'deps',
+var dependencyDir = 'deps',
     libxlDir = path.join(dependencyDir, 'libxl'),
     archiveEnv = 'NODE_LIBXL_SDK_ARCHIVE';
 
 var download = function(callback) {
-    function getPlaform() {
-        if (isWin) {
-            return 'win';
-        }
-
-        if (isMac) {
-            return 'mac';
-        }
-
-        return 'lin';
-    }
 
     function getArchiveName() {
-        return util.format('libxl-%s-0.2.20.%s', getPlaform(), isWin ? 'zip' : 'tar.gz');
+        return 'libxl-0.2.20.tgz';
     }
 
     function downloadToFile(filename, callback) {
