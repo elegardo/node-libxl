@@ -71,7 +71,7 @@ var download = function(callback) {
         }
 
         function onOpen() {
-            var url = util.format('http://www.libxl.com/download/%s', getArchiveName());
+            var url = util.format('https://registry.npmjs.org/libxl/-/%s', getArchiveName());
 
             console.log('Downloading ' + url);
 
